@@ -1,0 +1,23 @@
+{
+  "name": "shiren-bot",
+  "version": "1.0.0",
+  "description": "shiren the wanderer bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/riwn/shiren2-bot.git"
+  },
+  "author": "r_iwn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/riwn/shiren2-bot/issues"
+  },
+  "homepage": "https://github.com/riwn/shiren2-bot#readme",
+  "dependencies": {
+    "discord.js": "^12.5.1",
+    "eslint": "^7.19.0"
+  }
+}
