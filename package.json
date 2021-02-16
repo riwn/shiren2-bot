@@ -18,6 +18,11 @@
   "homepage": "https://github.com/riwn/shiren2-bot#readme",
   "dependencies": {
     "discord.js": "^12.5.1",
-    "eslint": "^7.19.0"
+    "discord.js-commando": "^0.12.2",
+    "dotenv": "^8.2.0",
+    "eslint": "^7.19.0",
+    "googleapis": "^67.0.0",
+    "sqlite": "^4.0.19",
+    "stein-js-client": "0.0.2"
   }
 }
