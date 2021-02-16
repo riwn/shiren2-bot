@@ -1,5 +1,4 @@
 const commando = require('discord.js-commando');
-
 class RiceCommand extends commando.Command {
     /**
      * AvatarCommando constructor
@@ -11,12 +10,14 @@ class RiceCommand extends commando.Command {
             description: 'おにぎりの値段がわかるよ！',
             memberName: 'rice',
             group: 'item',
+            examples: ['!rice 2'],
             args: [{
                 key: 'number',
                 prompt: '何番のおにぎりを知りたい?',
                 type: 'integer',
+                default: 1129,
                 validate: number => {
-                    if (number > 0 && number < 11) return true;
+                    if (number > 0 && number < 11 || number == 1129) return true;
                     return 'ちゃんとした番号入れてね';
                 }
             }]
