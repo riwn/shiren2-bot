@@ -3,23 +3,23 @@ require('dotenv').config();
 const {
     MessageEmbed
 } = require('discord.js');
-const Grass = require('../../Model/item/Grasses');
+const Scroll = require('../../Model/item/Scrolls');
 
-class GrassCommand extends commando.Command {
+class ScrollCommand extends commando.Command {
     /**
-     * AvatarCommando constructor
+     * ScrollCommand constructor
      * @param {commando.CommandoClient} client
      */
     constructor(client) {
         super(client, {
-            name: 'grass',
-            description: '草の値段がわかるよ！',
-            memberName: 'grass',
+            name: 'scroll',
+            description: '盾の値段がわかるよ！',
+            memberName: 'scroll',
             group: 'item',
-            examples: ['!grass 弟切草'],
+            examples: ['!scroll 聖域の巻物'],
             args: [{
                 key: 'name',
-                prompt: '何の草を知りたい?',
+                prompt: '何の巻物を知りたい?',
                 type: 'string',
             }]
         })
@@ -32,13 +32,13 @@ class GrassCommand extends commando.Command {
     async run(message, {
         name
     }) {
-        const grass = new Grass(name);
+        const scroll = new Scroll(name);
         // 名前
-        var name = grass.getName();
+        var name = scroll.getName();
         // 買値情報取得
-        var bidPrice = grass.getBidPrice();
+        var bidPrice = scroll.getBidPrice();
         // 売値情報取得
-        var sellingPrice = grass.getSellingPrice();
+        var sellingPrice = scroll.getSellingPrice();
         // 説明文作成
         var description = `買値:${bidPrice}\n` +
             `売値:${sellingPrice}`;
@@ -55,4 +55,4 @@ class GrassCommand extends commando.Command {
     }
 }
 
-module.exports = GrassCommand
+module.exports = ScrollCommand

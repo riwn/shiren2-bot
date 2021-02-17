@@ -3,23 +3,23 @@ require('dotenv').config();
 const {
     MessageEmbed
 } = require('discord.js');
-const Grass = require('../../Model/item/Grasses');
+const Shield = require('../../Model/item/Shields');
 
-class GrassCommand extends commando.Command {
+class ShieldCommand extends commando.Command {
     /**
-     * AvatarCommando constructor
+     * ShieldCommand constructor
      * @param {commando.CommandoClient} client
      */
     constructor(client) {
         super(client, {
-            name: 'grass',
-            description: '草の値段がわかるよ！',
-            memberName: 'grass',
+            name: 'shield',
+            description: '盾の値段がわかるよ！',
+            memberName: 'shield',
             group: 'item',
-            examples: ['!grass 弟切草'],
+            examples: ['!shield 金の盾'],
             args: [{
                 key: 'name',
-                prompt: '何の草を知りたい?',
+                prompt: '何の盾を知りたい?',
                 type: 'string',
             }]
         })
@@ -32,18 +32,22 @@ class GrassCommand extends commando.Command {
     async run(message, {
         name
     }) {
-        const grass = new Grass(name);
-        // 名前
-        var name = grass.getName();
+        const shield = new Shield(name);
+
+        // 強さ
+        var strength = shield.getStrength();
+        var markNum = shield.getMarkNum();
         // 買値情報取得
-        var bidPrice = grass.getBidPrice();
+        var bidPrice = shield.getBidPrice();
         // 売値情報取得
-        var sellingPrice = grass.getSellingPrice();
+        var sellingPrice = shield.getSellingPrice();
         // 説明文作成
         var description = `買値:${bidPrice}\n` +
-            `売値:${sellingPrice}`;
+            `売値:${sellingPrice}\n` +
+            `強さ:${strength}\n` +
+            `印数:${markNum}`;
         const embed = new MessageEmbed()
-            .setTitle(name)
+            .setTitle(shield.getName())
             .setColor("#5d62ff")
             .setDescription(description);
         return message.channel.send(embed).then(async function (msg) {
@@ -55,4 +59,4 @@ class GrassCommand extends commando.Command {
     }
 }
 
-module.exports = GrassCommand
+module.exports = ShieldCommand

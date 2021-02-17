@@ -3,23 +3,22 @@ require('dotenv').config();
 const {
     MessageEmbed
 } = require('discord.js');
-const Grass = require('../../Model/item/Grasses');
+const Arrow = require('../../Model/item/Arrows');
 
-class GrassCommand extends commando.Command {
+class ArrowCommand extends commando.Command {
     /**
-     * AvatarCommando constructor
+     * ArrowCommando constructor
      * @param {commando.CommandoClient} client
      */
     constructor(client) {
         super(client, {
-            name: 'grass',
-            description: '草の値段がわかるよ！',
-            memberName: 'grass',
+            name: 'arrow',
+            description: '矢の値段がわかるよ！',
+            memberName: 'arrow',
             group: 'item',
-            examples: ['!grass 弟切草'],
             args: [{
                 key: 'name',
-                prompt: '何の草を知りたい?',
+                prompt: '何の矢を知りたい?',
                 type: 'string',
             }]
         })
@@ -32,16 +31,23 @@ class GrassCommand extends commando.Command {
     async run(message, {
         name
     }) {
-        const grass = new Grass(name);
+        const arrow = new Arrow(name);
         // 名前
-        var name = grass.getName();
+        var name = arrow.getName();
+        // 強さ
+        var strength = arrow.getStrength();
         // 買値情報取得
-        var bidPrice = grass.getBidPrice();
+        var bidPrice = arrow.getBidPrice();
         // 売値情報取得
-        var sellingPrice = grass.getSellingPrice();
+        var sellingPrice = arrow.getSellingPrice();
+        // 回数情報取得
+        var minCount = arrow.getMinCount();
+        var maxCount = arrow.getMaxCount();
         // 説明文作成
         var description = `買値:${bidPrice}\n` +
-            `売値:${sellingPrice}`;
+            `売値:${sellingPrice}\n` +
+            `強さ:${strength}\n` +
+            `${minCount}〜${maxCount}個で出現するよ`;
         const embed = new MessageEmbed()
             .setTitle(name)
             .setColor("#5d62ff")
@@ -55,4 +61,4 @@ class GrassCommand extends commando.Command {
     }
 }
 
-module.exports = GrassCommand
+module.exports = ArrowCommand

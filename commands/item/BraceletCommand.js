@@ -3,23 +3,23 @@ require('dotenv').config();
 const {
     MessageEmbed
 } = require('discord.js');
-const Grass = require('../../Model/item/Grasses');
+const Bracelets = require('../../Model/item/Bracelets');
 
-class GrassCommand extends commando.Command {
+class BraceletCommand extends commando.Command {
     /**
-     * AvatarCommando constructor
+     * BraceletCommand constructor
      * @param {commando.CommandoClient} client
      */
     constructor(client) {
         super(client, {
-            name: 'grass',
-            description: '草の値段がわかるよ！',
-            memberName: 'grass',
+            name: 'bracelet',
+            description: '腕輪の値段がわかるよ！',
+            memberName: 'bracelet',
             group: 'item',
-            examples: ['!grass 弟切草'],
+            examples: ['!bracelet パコレプキンの腕輪'],
             args: [{
                 key: 'name',
-                prompt: '何の草を知りたい?',
+                prompt: '何の腕輪を知りたい?',
                 type: 'string',
             }]
         })
@@ -32,13 +32,13 @@ class GrassCommand extends commando.Command {
     async run(message, {
         name
     }) {
-        const grass = new Grass(name);
+        const bracelet = new Bracelets(name);
         // 名前
-        var name = grass.getName();
+        var name = bracelet.getName();
         // 買値情報取得
-        var bidPrice = grass.getBidPrice();
+        var bidPrice = bracelet.getBidPrice();
         // 売値情報取得
-        var sellingPrice = grass.getSellingPrice();
+        var sellingPrice = bracelet.getSellingPrice();
         // 説明文作成
         var description = `買値:${bidPrice}\n` +
             `売値:${sellingPrice}`;
@@ -55,4 +55,4 @@ class GrassCommand extends commando.Command {
     }
 }
 
-module.exports = GrassCommand
+module.exports = BraceletCommand

@@ -1,4 +1,4 @@
-const CaneNameAndIdList = [{
+const CaneList = [{
         id: 1,
         name: "ふきとばしの杖",
         bid_price: 500,
@@ -193,13 +193,13 @@ const CaneNameAndIdList = [{
 /**
  * 杖のクラス
  */
-class Cane {
+class Canes {
     /**
-     * Cane constructor
+     * Canes constructor
      * @param string name アイテム名
      */
     constructor(name) {
-        this.cane = CaneNameAndIdList.find((v) => v.name === name);
+        this.cane = CaneList.find((v) => v.name === name);
     }
 
     /**
@@ -224,32 +224,20 @@ class Cane {
     }
 
     /**
-     * 購入時の最高額を取得
+     * 修正値の値から買値を求める
+     * @param integer corValue
      */
-    getMaxBidPrice() {
-        return this.cane.bid_price + (this.cane.max_count * this.cane.bid_increase);
+    calcBidPrice(corValue) {
+        return this.cane.bid_price + (corValue * this.cane.bid_increase);
     }
 
     /**
-     * 購入時の最低額を取得
+     * 修正値の値から売値を求める
+     * @param integer corValue
      */
-    getMinBidPrice() {
-        return this.cane.bid_price + (this.cane.min_count * this.cane.bid_increase);
-    }
-
-    /**
-     * 購入時の最高額を取得
-     */
-    getMaxSellingPrice() {
-        return this.cane.selling_price + (this.cane.max_count * this.cane.bid_increase);
-    }
-
-    /**
-     * 購入時の最低額を取得
-     */
-    getMinSellingPrice() {
-        return this.cane.selling_price + (this.cane.min_count * this.cane.bid_increase);
+    calcSellingPrice(corValue) {
+        return this.cane.selling_price + (corValue * this.cane.selling_increase);
     }
 }
 
-module.exports = Cane
+module.exports = Canes

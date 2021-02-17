@@ -23,7 +23,7 @@ client.registry
     .registerGroups([
         ['item', 'アイテム']
     ])
-    .registerCommandsIn(path.join(__dirname, 'commands')) // 注意: registerGroupsでグループを登録する前に実行すると、エラーが起きるので最後に実行しておこう。
+    .registerCommandsIn(path.join(__dirname, 'commands'))
 
 // Docs: https://discord.js.org/#/docs/commando/master/general/first-steps
 client.setProvider(

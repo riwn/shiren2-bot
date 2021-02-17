@@ -1,25 +1,25 @@
-const commando = require('discord.js-commando')
+const commando = require('discord.js-commando');
 require('dotenv').config();
 const {
     MessageEmbed
 } = require('discord.js');
-const Cane = require('../../Model/item/Canes');
+const Pot = require('../../Model/item/Pots');
 
-class CaneCommand extends commando.Command {
+class PotCommand extends commando.Command {
     /**
-     * AvatarCommando constructor
+     * PotCommando constructor
      * @param {commando.CommandoClient} client
      */
     constructor(client) {
         super(client, {
-            name: 'cane',
-            description: '杖の値段がわかるよ！',
-            memberName: 'cane',
+            name: 'pot',
+            description: '壺の値段がわかるよ！',
+            memberName: 'pot',
             group: 'item',
-            examples: ['!cane 回復の杖'],
+            examples: ['!pot ほぞんの壺'],
             args: [{
                 key: 'name',
-                prompt: '何の杖を知りたい?',
+                prompt: '何の壺を知りたい?',
                 type: 'string',
             }]
         })
@@ -32,33 +32,31 @@ class CaneCommand extends commando.Command {
     async run(message, {
         name
     }) {
-        // 杖クラスのインスタンス化
-        const cane = new Cane(name);
-
+        const pot = new Pot(name);
         // 名前
-        var name = cane.getName();
+        var name = pot.getName();
         // 回数情報取得
-        var minCount = cane.getMinCount();
-        var maxCount = cane.getMaxCount();
+        var minCount = pot.getMinCount();
+        var maxCount = pot.getMaxCount();
         var count = '';
         var bidPrice = '';
         var sellingPrice = '';
 
-        // 0回などで出現するのへの対応
+        // 容量0などで出現するのへの対応
         if (minCount == maxCount) {
             // 買値情報取得
-            var minSellingPrice = cane.calcSellingPrice(maxCount);
-            var minBidPrice = cane.getMinBidPrice(minCount);
+            var minSellingPrice = pot.calcSellingPrice(maxCount);
+            var minBidPrice = pot.getMinBidPrice(minCount);
             count = `${minCount}`
             bidPrice = `${minBidPrice}`
             sellingPrice = `${minSellingPrice}`
         } else {
             // 買値情報取得
-            var maxBidPrice = cane.calcBidPrice(maxCount);
-            var minBidPrice = cane.getMinBidPrice(minCount);
+            var maxBidPrice = pot.calcBidPrice(maxCount);
+            var minBidPrice = pot.getMinBidPrice(minCount);
             // 売値情報取得
-            var maxSellingPrice = cane.calcSellingPrice(maxCount);
-            var minSellingPrice = cane.calcSellingPrice(minCount);
+            var maxSellingPrice = pot.calcSellingPrice(maxCount);
+            var minSellingPrice = pot.calcSellingPrice(minCount);
             count = `${minCount}〜${maxCount}`
             bidPrice = `${minBidPrice}〜${maxBidPrice}`
             sellingPrice = `${minSellingPrice}〜${maxSellingPrice}`
@@ -66,7 +64,7 @@ class CaneCommand extends commando.Command {
         // 説明文作成
         var description = `買値:${bidPrice}\n` +
             `売値:${sellingPrice}\n` +
-            `${count}回で出現するよ`;
+            `容量${count}で出現するよ`;
         const embed = new MessageEmbed()
             .setTitle(name)
             .setColor("#5d62ff")
@@ -80,4 +78,4 @@ class CaneCommand extends commando.Command {
     }
 }
 
-module.exports = CaneCommand
+module.exports = PotCommand

@@ -1,25 +1,25 @@
-const commando = require('discord.js-commando')
+const commando = require('discord.js-commando');
 require('dotenv').config();
 const {
     MessageEmbed
 } = require('discord.js');
-const Grass = require('../../Model/item/Grasses');
+const Rice = require('../../Model/item/Rices');
 
-class GrassCommand extends commando.Command {
+class RiceCommand extends commando.Command {
     /**
      * AvatarCommando constructor
      * @param {commando.CommandoClient} client
      */
     constructor(client) {
         super(client, {
-            name: 'grass',
-            description: '草の値段がわかるよ！',
-            memberName: 'grass',
+            name: 'rice',
+            description: 'おにぎりの値段がわかるよ！',
+            memberName: 'rice',
             group: 'item',
-            examples: ['!grass 弟切草'],
+            examples: ['!rice 大きなおにぎり'],
             args: [{
                 key: 'name',
-                prompt: '何の草を知りたい?',
+                prompt: '何のおにぎりを知りたい?',
                 type: 'string',
             }]
         })
@@ -32,13 +32,13 @@ class GrassCommand extends commando.Command {
     async run(message, {
         name
     }) {
-        const grass = new Grass(name);
+        const rice = new Rice(name);
         // 名前
-        var name = grass.getName();
+        var name = rice.getName();
         // 買値情報取得
-        var bidPrice = grass.getBidPrice();
+        var bidPrice = rice.getBidPrice();
         // 売値情報取得
-        var sellingPrice = grass.getSellingPrice();
+        var sellingPrice = rice.getSellingPrice();
         // 説明文作成
         var description = `買値:${bidPrice}\n` +
             `売値:${sellingPrice}`;
@@ -55,4 +55,4 @@ class GrassCommand extends commando.Command {
     }
 }
 
-module.exports = GrassCommand
+module.exports = RiceCommand
