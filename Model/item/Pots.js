@@ -1,3 +1,5 @@
+const Items = require("./Items");
+
 const PotList = [{
         id: 1,
         name: "識別の壺",
@@ -133,12 +135,13 @@ const PotList = [{
 /**
  * 壺のクラス
  */
-class Pots {
+class Pots extends Items {
     /**
      * Pots constructor
      * @param string name アイテム名
      */
     constructor(name) {
+        super();
         this.pot = PotList.find((v) => v.name === name);
     }
 

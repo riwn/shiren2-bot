@@ -1,3 +1,4 @@
+const Items = require('./Items');
 const ScrollList = [{
     id: 1,
     name: "ワナ作動の巻物",
@@ -138,12 +139,13 @@ const ScrollList = [{
 /**
  * 巻物のクラス
  */
-class Scrolls {
+class Scrolls extends Items {
     /**
      * Scrolls constructor
      * @param string name アイテム名
      */
     constructor(name) {
+        super();
         this.scroll = ScrollList.find((v) => v.name === name);
     }
 

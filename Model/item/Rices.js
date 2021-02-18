@@ -1,3 +1,4 @@
+const Items = require("./Items");
 const RiceList = [{
     id: 1,
     name: "まずそうなおにぎり",
@@ -28,12 +29,13 @@ const RiceList = [{
 /**
  * おにぎりのクラス
  */
-class Rices {
+class Rices extends Items {
     /**
      * Rices constructor
      * @param string name アイテム名
      */
     constructor(name) {
+        super();
         this.rice = RiceList.find((v) => v.name === name);
     }
 

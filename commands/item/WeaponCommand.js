@@ -16,11 +16,20 @@ class WeaponCommand extends commando.Command {
             description: '武器の値段がわかるよ！',
             memberName: 'weapon',
             group: 'item',
-            examples: ['!weapon ドラゴンキラー'],
+            examples: ['!weapon ドラゴンキラー 6'],
             args: [{
                 key: 'name',
                 prompt: '何の武器を知りたい?',
                 type: 'string',
+            }, {
+                key: 'correctionValue',
+                prompt: '(任意)修正値は?',
+                type: 'integer',
+                default: 0,
+                validator: correctionValue => {
+                    if (correctionValue >= -99 && correctionValue <= 99) return true;
+                    return '修正値は-99〜+99で入力してね。';
+                }
             }]
         })
     }
@@ -30,27 +39,35 @@ class WeaponCommand extends commando.Command {
      * @param {commando.CommandMessage} message
      */
     async run(message, {
-        name
+        name,
+        correctionValue
     }) {
-        const cane = new Cane(name);
+        const weapon = new Weapon(name, correctionValue);
 
-        var maxBidPrice = cane.getMaxBidPrice();
-        var minBidPrice = cane.getMinBidPrice();
-
-        var maxSellingPrice = cane.getMaxSellingPrice();
-        var minSellingPrice = cane.getMinSellingPrice()
-        var minCount = cane.getMinCount();
-        var maxCount = cane.getMaxCount();
+        // 名前
+        var name = weapon.getName(correctionValue);
+        // 強さ
+        var strength = weapon.getStrength(correctionValue);
+        var markNum = weapon.getMarkNum();
+        // 買値情報取得
+        var bidPrice = weapon.getBidPrice(correctionValue);
+        // 売値情報取得
+        var sellingPrice = weapon.getSellingPrice(correctionValue);
         // 説明文作成
-        var description = `買値:${minBidPrice}〜${maxBidPrice}\n` +
-            `売値:${minSellingPrice}〜${maxSellingPrice}\n` +
-            `${minCount}回〜${maxCount}回で出現するよ`;
+        var description = `買値:${bidPrice}\n` +
+            `売値:${sellingPrice}\n` +
+            `強さ:${strength}\n` +
+            `印数:${markNum}`;
         const embed = new MessageEmbed()
-            .setTitle(cane.getName())
+            .setTitle(name)
             .setColor("#5d62ff")
-            .setDescription(description)
-            .setTimestamp();
-        return message.channel.send(embed)
+            .setDescription(description);
+        return message.channel.send(embed).then(async function (msg) {
+            let reactList = ['👍', '👎'];
+            reactList.forEach(react => {
+                msg.react(react);
+            });
+        }).catch(console.error);
     }
 }
 

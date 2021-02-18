@@ -1,3 +1,4 @@
+const Items = require('./Items');
 const ShieldList = [{
     id: 1,
     name: "きたえた木の盾",
@@ -255,64 +256,56 @@ const ShieldList = [{
 /**
  * 盾のクラス
  */
-class Shields {
+class Shields extends Items {
     /**
      * Shields constructor
      * @param string name アイテム名
      */
     constructor(name) {
-        this.shield = ShieldList.find((v) => v.name === name);
+        super();
+        this.item = ShieldList.find((v) => v.name === name);
     }
 
     /**
      * 名前を取得
+     * @param integer correctionValue 修正値
      */
-    getName() {
-        return this.shield.name;
+    getName(correctionValue) {
+        if (correctionValue == 0) {
+            return this.item.name;
+        }
+        return this.item.name + '+' + String(correctionValue);
     }
 
     /**
      * 盾の強さ取得
+     * @param integer correctionValue 修正値
      */
-    getStrength() {
-        return this.shield.strength;
+    getStrength(correctionValue) {
+        return this.item.strength + correctionValue;
     }
 
     /**
      * 盾の印数を取得
      */
     getMarkNum() {
-        return this.shield.mark_num;
-    }
-
-    /**
-     * 購入額を取得
-     */
-    getBidPrice() {
-        return this.shield.bid_price;
-    }
-
-    /**
-     * 売却額を取得
-     */
-    getSellingPrice() {
-        return this.shield.selling_price;
+        return this.item.mark_num;
     }
 
     /**
      * 修正値の値から買値を求める
-     * @param integer corValue
+     * @param integer correctionValue 修正値
      */
-    calcBidPrice(corValue) {
-        return this.shield.bid_price + (corValue * this.shield.bid_increase);
+    getBidPrice(correctionValue) {
+        return this.item.bid_price + (correctionValue * this.item.bid_increase);
     }
 
     /**
      * 修正値の値から売値を求める
-     * @param integer corValue
+     * @param integer correctionValue 修正値
      */
-    calcSellingPrice(corValue) {
-        return this.shield.selling_price + (corValue * this.shield.selling_increase);
+    getSellingPrice(correctionValue) {
+        return this.item.selling_price + (correctionValue * this.item.selling_increase);
     }
 }
 

@@ -1,3 +1,5 @@
+const Items = require("./Items");
+
 const BraceletList = [{
     id: 1,
     name: "くねくねよけの腕輪",
@@ -93,12 +95,13 @@ const BraceletList = [{
 /**
  * 腕輪のクラス
  */
-class Bracelets {
+class Bracelets extends Items {
     /**
      * Bracelets constructor
      * @param string name アイテム名
      */
     constructor(name) {
+        super();
         this.bracelet = BraceletList.find((v) => v.name === name);
     }
 

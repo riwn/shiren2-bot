@@ -1,3 +1,5 @@
+const Items = require("./Items");
+
 const ArrowList = [{
     id: 1,
     name: "木の矢",
@@ -67,12 +69,13 @@ const ArrowList = [{
 /**
  * 矢のクラス
  */
-class Arrows {
+class Arrows extends Items {
     /**
      * Arrows constructor
      * @param string name アイテム名
      */
     constructor(name) {
+        super();
         this.arrow = ArrowList.find((v) => v.name === name);
     }
 
