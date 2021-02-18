@@ -75,7 +75,7 @@ class Arrows extends Items {
      * @param string name アイテム名
      */
     constructor(name) {
-        super();
+        super(ArrowList);
         this.arrow = ArrowList.find((v) => v.name === name);
     }
 

@@ -145,7 +145,7 @@ class Scrolls extends Items {
      * @param string name アイテム名
      */
     constructor(name) {
-        super();
+        super(ScrollList);
         this.scroll = ScrollList.find((v) => v.name === name);
     }
 

@@ -32,45 +32,53 @@ class CaneCommand extends commando.Command {
     async run(message, {
         name
     }) {
+        var embed;
         // 杖クラスのインスタンス化
         const cane = new Cane(name);
+        if (cane.isSetItem()) {
+            // 名前
+            var name = cane.getName();
+            // 回数情報取得
+            var minCount = cane.getMinCount();
+            var maxCount = cane.getMaxCount();
+            var count = '';
+            var bidPrice = '';
+            var sellingPrice = '';
 
-        // 名前
-        var name = cane.getName();
-        // 回数情報取得
-        var minCount = cane.getMinCount();
-        var maxCount = cane.getMaxCount();
-        var count = '';
-        var bidPrice = '';
-        var sellingPrice = '';
-
-        // 0回などで出現するのへの対応
-        if (minCount == maxCount) {
-            // 買値情報取得
-            var minSellingPrice = cane.calcSellingPrice(maxCount);
-            var minBidPrice = cane.getMinBidPrice(minCount);
-            count = `${minCount}`
-            bidPrice = `${minBidPrice}`
-            sellingPrice = `${minSellingPrice}`
+            // 0回などで出現するのへの対応
+            if (minCount == maxCount) {
+                // 買値情報取得
+                var minSellingPrice = cane.calcSellingPrice(maxCount);
+                var minBidPrice = cane.getMinBidPrice(minCount);
+                count = `${minCount}`
+                bidPrice = `${minBidPrice}`
+                sellingPrice = `${minSellingPrice}`
+            } else {
+                // 買値情報取得
+                var maxBidPrice = cane.calcBidPrice(maxCount);
+                var minBidPrice = cane.getMinBidPrice(minCount);
+                // 売値情報取得
+                var maxSellingPrice = cane.calcSellingPrice(maxCount);
+                var minSellingPrice = cane.calcSellingPrice(minCount);
+                count = `${minCount}〜${maxCount}`
+                bidPrice = `${minBidPrice}〜${maxBidPrice}`
+                sellingPrice = `${minSellingPrice}〜${maxSellingPrice}`
+            }
+            // 説明文作成
+            var description = `買値:${bidPrice}\n` +
+                `売値:${sellingPrice}\n` +
+                `${count}回で出現するよ`;
+            embed = new MessageEmbed()
+                .setTitle(name)
+                .setColor("#5d62ff")
+                .setDescription(description);
         } else {
-            // 買値情報取得
-            var maxBidPrice = cane.calcBidPrice(maxCount);
-            var minBidPrice = cane.getMinBidPrice(minCount);
-            // 売値情報取得
-            var maxSellingPrice = cane.calcSellingPrice(maxCount);
-            var minSellingPrice = cane.calcSellingPrice(minCount);
-            count = `${minCount}〜${maxCount}`
-            bidPrice = `${minBidPrice}〜${maxBidPrice}`
-            sellingPrice = `${minSellingPrice}〜${maxSellingPrice}`
+            var description = cane.getItemList();
+            embed = new MessageEmbed()
+                .setTitle('杖のリスト')
+                .setColor("#5d62ff")
+                .setDescription(description);
         }
-        // 説明文作成
-        var description = `買値:${bidPrice}\n` +
-            `売値:${sellingPrice}\n` +
-            `${count}回で出現するよ`;
-        const embed = new MessageEmbed()
-            .setTitle(name)
-            .setColor("#5d62ff")
-            .setDescription(description);
         return message.channel.send(embed).then(async function (msg) {
             let reactList = ['👍', '👎'];
             reactList.forEach(react => {

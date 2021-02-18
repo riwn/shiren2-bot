@@ -32,20 +32,30 @@ class BraceletCommand extends commando.Command {
     async run(message, {
         name
     }) {
+        var embed;
+        // 腕輪クラスのインスタンス化
         const bracelet = new Bracelets(name);
-        // 名前
-        var name = bracelet.getName();
-        // 買値情報取得
-        var bidPrice = bracelet.getBidPrice();
-        // 売値情報取得
-        var sellingPrice = bracelet.getSellingPrice();
-        // 説明文作成
-        var description = `買値:${bidPrice}\n` +
-            `売値:${sellingPrice}`;
-        const embed = new MessageEmbed()
-            .setTitle(name)
-            .setColor("#5d62ff")
-            .setDescription(description);
+        if (bracelet.isSetItem()) {
+            // 名前
+            var name = bracelet.getName();
+            // 買値情報取得
+            var bidPrice = bracelet.getBidPrice();
+            // 売値情報取得
+            var sellingPrice = bracelet.getSellingPrice();
+            // 説明文作成
+            var description = `買値:${bidPrice}\n` +
+                `売値:${sellingPrice}`;
+            embed = new MessageEmbed()
+                .setTitle(name)
+                .setColor("#5d62ff")
+                .setDescription(description);
+        } else {
+            var description = bracelet.getItemList();
+            embed = new MessageEmbed()
+                .setTitle('腕輪のリスト')
+                .setColor("#5d62ff")
+                .setDescription(description);
+        }
         return message.channel.send(embed).then(async function (msg) {
             let reactList = ['👍', '👎'];
             reactList.forEach(react => {

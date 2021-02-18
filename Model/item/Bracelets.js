@@ -101,7 +101,7 @@ class Bracelets extends Items {
      * @param string name アイテム名
      */
     constructor(name) {
-        super();
+        super(BraceletList);
         this.bracelet = BraceletList.find((v) => v.name === name);
     }
 

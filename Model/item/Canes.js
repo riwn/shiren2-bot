@@ -201,7 +201,7 @@ class Canes extends Items {
      * @param string name アイテム名
      */
     constructor(name) {
-        super();
+        super(BraceletList);
         this.cane = CaneList.find((v) => v.name === name);
     }
 

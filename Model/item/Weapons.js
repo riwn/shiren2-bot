@@ -362,7 +362,7 @@ class Weapons extends Items {
      * @param integer correctionValue 修正値
      */
     constructor(name) {
-        super();
+        super(WeaponList);
         this.weapon = WeaponList.find((v) => v.name === name);
     }
 

@@ -35,7 +35,7 @@ class Rices extends Items {
      * @param string name アイテム名
      */
     constructor(name) {
-        super();
+        super(RiceList);
         this.rice = RiceList.find((v) => v.name === name);
     }
 

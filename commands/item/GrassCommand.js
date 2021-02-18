@@ -32,20 +32,30 @@ class GrassCommand extends commando.Command {
     async run(message, {
         name
     }) {
+        var embed;
+        // 草クラスのインスタンス化
         const grass = new Grass(name);
-        // 名前
-        var name = grass.getName();
-        // 買値情報取得
-        var bidPrice = grass.getBidPrice();
-        // 売値情報取得
-        var sellingPrice = grass.getSellingPrice();
-        // 説明文作成
-        var description = `買値:${bidPrice}\n` +
-            `売値:${sellingPrice}`;
-        const embed = new MessageEmbed()
-            .setTitle(name)
-            .setColor("#5d62ff")
-            .setDescription(description);
+        if (grass.isSetItem()) {
+            // 名前
+            var name = grass.getName();
+            // 買値情報取得
+            var bidPrice = grass.getBidPrice();
+            // 売値情報取得
+            var sellingPrice = grass.getSellingPrice();
+            // 説明文作成
+            var description = `買値:${bidPrice}\n` +
+                `売値:${sellingPrice}`;
+            embed = new MessageEmbed()
+                .setTitle(name)
+                .setColor("#5d62ff")
+                .setDescription(description);
+        } else {
+            var description = grass.getItemList();
+            embed = new MessageEmbed()
+                .setTitle('草のリスト')
+                .setColor("#5d62ff")
+                .setDescription(description);
+        }
         return message.channel.send(embed).then(async function (msg) {
             let reactList = ['👍', '👎'];
             reactList.forEach(react => {

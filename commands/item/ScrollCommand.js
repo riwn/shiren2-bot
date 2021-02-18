@@ -32,20 +32,30 @@ class ScrollCommand extends commando.Command {
     async run(message, {
         name
     }) {
+        var embed;
+        // 巻物クラスのインスタンス化
         const scroll = new Scroll(name);
-        // 名前
-        var name = scroll.getName();
-        // 買値情報取得
-        var bidPrice = scroll.getBidPrice();
-        // 売値情報取得
-        var sellingPrice = scroll.getSellingPrice();
-        // 説明文作成
-        var description = `買値:${bidPrice}\n` +
-            `売値:${sellingPrice}`;
-        const embed = new MessageEmbed()
-            .setTitle(name)
-            .setColor("#5d62ff")
-            .setDescription(description);
+        if (scroll.isSetItem()) {
+            // 名前
+            var name = scroll.getName();
+            // 買値情報取得
+            var bidPrice = scroll.getBidPrice();
+            // 売値情報取得
+            var sellingPrice = scroll.getSellingPrice();
+            // 説明文作成
+            var description = `買値:${bidPrice}\n` +
+                `売値:${sellingPrice}`;
+            embed = new MessageEmbed()
+                .setTitle(name)
+                .setColor("#5d62ff")
+                .setDescription(description);
+        } else {
+            var description = scroll.getItemList();
+            embed = new MessageEmbed()
+                .setTitle('巻物のリスト')
+                .setColor("#5d62ff")
+                .setDescription(description);
+        }
         return message.channel.send(embed).then(async function (msg) {
             let reactList = ['👍', '👎'];
             reactList.forEach(react => {

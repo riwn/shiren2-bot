@@ -23,7 +23,11 @@
     "dotenv": "^8.2.0",
     "eslint": "^7.19.0",
     "googleapis": "^67.0.0",
+    "querystring": "^0.2.1",
     "sqlite": "^4.0.19",
     "stein-js-client": "0.0.2"
+  },
+  "engines": {
+    "node": "12.0"
   }
 }

@@ -32,20 +32,29 @@ class RiceCommand extends commando.Command {
     async run(message, {
         name
     }) {
+        var embed;
         const rice = new Rice(name);
-        // 名前
-        var name = rice.getName();
-        // 買値情報取得
-        var bidPrice = rice.getBidPrice();
-        // 売値情報取得
-        var sellingPrice = rice.getSellingPrice();
-        // 説明文作成
-        var description = `買値:${bidPrice}\n` +
-            `売値:${sellingPrice}`;
-        const embed = new MessageEmbed()
-            .setTitle(name)
-            .setColor("#5d62ff")
-            .setDescription(description);
+        if (rice.isSetItem()) {
+            // 名前
+            var name = rice.getName();
+            // 買値情報取得
+            var bidPrice = rice.getBidPrice();
+            // 売値情報取得
+            var sellingPrice = rice.getSellingPrice();
+            // 説明文作成
+            var description = `買値:${bidPrice}\n` +
+                `売値:${sellingPrice}`;
+            embed = new MessageEmbed()
+                .setTitle(name)
+                .setColor("#5d62ff")
+                .setDescription(description);
+        } else {
+            var description = rice.getItemList();
+            embed = new MessageEmbed()
+                .setTitle('おにぎりのリスト')
+                .setColor("#5d62ff")
+                .setDescription(description);
+        }
         return message.channel.send(embed).then(async function (msg) {
             let reactList = ['👍', '👎'];
             reactList.forEach(react => {

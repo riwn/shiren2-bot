@@ -141,7 +141,7 @@ class Pots extends Items {
      * @param string name アイテム名
      */
     constructor(name) {
-        super();
+        super(PotList);
         this.pot = PotList.find((v) => v.name === name);
     }
 

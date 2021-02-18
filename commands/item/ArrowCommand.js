@@ -31,27 +31,37 @@ class ArrowCommand extends commando.Command {
     async run(message, {
         name
     }) {
+        // 返却用
+        var embed;
         const arrow = new Arrow(name);
-        // 名前
-        var name = arrow.getName();
-        // 強さ
-        var strength = arrow.getStrength();
-        // 買値情報取得
-        var bidPrice = arrow.getBidPrice();
-        // 売値情報取得
-        var sellingPrice = arrow.getSellingPrice();
-        // 回数情報取得
-        var minCount = arrow.getMinCount();
-        var maxCount = arrow.getMaxCount();
-        // 説明文作成
-        var description = `買値:${bidPrice}\n` +
-            `売値:${sellingPrice}\n` +
-            `強さ:${strength}\n` +
-            `${minCount}〜${maxCount}個で出現するよ`;
-        const embed = new MessageEmbed()
-            .setTitle(name)
-            .setColor("#5d62ff")
-            .setDescription(description);
+        if (arrow.isSetItem()) {
+            // 名前
+            var name = arrow.getName();
+            // 強さ
+            var strength = arrow.getStrength();
+            // 買値情報取得
+            var bidPrice = arrow.getBidPrice();
+            // 売値情報取得
+            var sellingPrice = arrow.getSellingPrice();
+            // 回数情報取得
+            var minCount = arrow.getMinCount();
+            var maxCount = arrow.getMaxCount();
+            // 説明文作成
+            var description = `買値:${bidPrice}\n` +
+                `売値:${sellingPrice}\n` +
+                `強さ:${strength}\n` +
+                `${minCount}〜${maxCount}個で出現するよ`;
+            embed = new MessageEmbed()
+                .setTitle(name)
+                .setColor("#5d62ff")
+                .setDescription(description);
+        } else {
+            var description = arrow.getItemList();
+            embed = new MessageEmbed()
+                .setTitle('矢のリスト')
+                .setColor("#5d62ff")
+                .setDescription(description);
+        }
         return message.channel.send(embed).then(async function (msg) {
             let reactList = ['👍', '👎'];
             reactList.forEach(react => {

@@ -121,7 +121,7 @@ class Grasss extends Items {
      * @param string name アイテム名
      */
     constructor(name) {
-        super();
+        super(GrassList);
         this.grass = GrassList.find((v) => v.name === name);
     }
 

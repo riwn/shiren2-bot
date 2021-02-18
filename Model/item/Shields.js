@@ -262,7 +262,7 @@ class Shields extends Items {
      * @param string name アイテム名
      */
     constructor(name) {
-        super();
+        super(ShieldList);
         this.item = ShieldList.find((v) => v.name === name);
     }
 

@@ -42,26 +42,35 @@ class ShieldCommand extends commando.Command {
         name,
         correctionValue
     }) {
+        var embed;
+        // 盾クラスのインスタンス化
         const shield = new Shield(name);
-
-        // 名前
-        var name = shield.getName(correctionValue);
-        // 強さ
-        var strength = shield.getStrength(correctionValue);
-        var markNum = shield.getMarkNum();
-        // 買値情報取得
-        var bidPrice = shield.getBidPrice(correctionValue);
-        // 売値情報取得
-        var sellingPrice = shield.getSellingPrice(correctionValue);
-        // 説明文作成
-        var description = `買値:${bidPrice}\n` +
-            `売値:${sellingPrice}\n` +
-            `強さ:${strength}\n` +
-            `印数:${markNum}`;
-        const embed = new MessageEmbed()
-            .setTitle(name)
-            .setColor("#5d62ff")
-            .setDescription(description);
+        if (shield.isSetItem()) {
+            // 名前
+            var name = shield.getName(correctionValue);
+            // 強さ
+            var strength = shield.getStrength(correctionValue);
+            var markNum = shield.getMarkNum();
+            // 買値情報取得
+            var bidPrice = shield.getBidPrice(correctionValue);
+            // 売値情報取得
+            var sellingPrice = shield.getSellingPrice(correctionValue);
+            // 説明文作成
+            var description = `買値:${bidPrice}\n` +
+                `売値:${sellingPrice}\n` +
+                `強さ:${strength}\n` +
+                `印数:${markNum}`;
+            embed = new MessageEmbed()
+                .setTitle(name)
+                .setColor("#5d62ff")
+                .setDescription(description);
+        } else {
+            var description = shield.getItemList();
+            embed = new MessageEmbed()
+                .setTitle('盾のリスト')
+                .setColor("#5d62ff")
+                .setDescription(description);
+        }
         return message.channel.send(embed).then(async function (msg) {
             let reactList = ['👍', '👎'];
             reactList.forEach(react => {
