@@ -363,7 +363,7 @@ class Weapons extends Items {
      */
     constructor(name) {
         super(WeaponList);
-        this.weapon = WeaponList.find((v) => v.name === name);
+        this.item = WeaponList.find((v) => v.name === name);
     }
 
     /**
@@ -372,23 +372,23 @@ class Weapons extends Items {
      */
     getName(correctionValue) {
         if (correctionValue == 0) {
-            return this.weapon.name;
+            return this.item.name;
         }
-        return this.weapon.name + '+' + String(correctionValue);
+        return this.item.name + '+' + String(correctionValue);
     }
 
     /**
      * 武器の強さ取得
      */
     getStrength(correctionValue) {
-        return this.weapon.strength + correctionValue;
+        return this.item.strength + correctionValue;
     }
 
     /**
      * 武器の印数を取得
      */
     getMarkNum() {
-        return this.weapon.mark_num;
+        return this.item.mark_num;
     }
 
     /**
@@ -396,7 +396,7 @@ class Weapons extends Items {
      * @param integer correctionValue 修正値
      */
     getBidPrice(correctionValue) {
-        return this.weapon.bid_price + (correctionValue * this.weapon.bid_increase);
+        return this.item.bid_price + (correctionValue * this.item.bid_increase);
     }
 
     /**
@@ -404,7 +404,7 @@ class Weapons extends Items {
      * @param integer correctionValue 修正値
      */
     getSellingPrice(correctionValue) {
-        return this.weapon.selling_price + (correctionValue * this.weapon.selling_increase);
+        return this.item.selling_price + (correctionValue * this.item.selling_increase);
     }
 }
 

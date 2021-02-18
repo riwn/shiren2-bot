@@ -102,28 +102,28 @@ class Bracelets extends Items {
      */
     constructor(name) {
         super(BraceletList);
-        this.bracelet = BraceletList.find((v) => v.name === name);
+        this.item = BraceletList.find((v) => v.name === name);
     }
 
     /**
      * 名前を取得
      */
     getName() {
-        return this.bracelet.name;
+        return this.item.name;
     }
 
     /**
      * 購入時の最高額を取得
      */
     getBidPrice() {
-        return this.bracelet.bid_price;
+        return this.item.bid_price;
     }
 
     /**
      * 購入時の最高額を取得
      */
     getSellingPrice() {
-        return this.bracelet.selling_price;
+        return this.item.selling_price;
     }
 }
 

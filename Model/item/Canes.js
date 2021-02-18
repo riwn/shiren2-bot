@@ -201,29 +201,29 @@ class Canes extends Items {
      * @param string name アイテム名
      */
     constructor(name) {
-        super(BraceletList);
-        this.cane = CaneList.find((v) => v.name === name);
+        super(CaneList);
+        this.item = CaneList.find((v) => v.name === name);
     }
 
     /**
      * 名前を取得
      */
     getName() {
-        return this.cane.name;
+        return this.item.name;
     }
 
     /**
      * 杖の最大回数を取得する
      */
     getMaxCount() {
-        return this.cane.max_count;
+        return this.item.max_count;
     }
 
     /**
      * 杖の最小回数を取得する
      */
     getMinCount() {
-        return this.cane.min_count;
+        return this.item.min_count;
     }
 
     /**
@@ -231,7 +231,7 @@ class Canes extends Items {
      * @param integer corValue
      */
     calcBidPrice(corValue) {
-        return this.cane.bid_price + (corValue * this.cane.bid_increase);
+        return this.item.bid_price + (corValue * this.item.bid_increase);
     }
 
     /**
@@ -239,7 +239,7 @@ class Canes extends Items {
      * @param integer corValue
      */
     calcSellingPrice(corValue) {
-        return this.cane.selling_price + (corValue * this.cane.selling_increase);
+        return this.item.selling_price + (corValue * this.item.selling_increase);
     }
 }
 

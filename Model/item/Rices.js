@@ -36,49 +36,49 @@ class Rices extends Items {
      */
     constructor(name) {
         super(RiceList);
-        this.rice = RiceList.find((v) => v.name === name);
+        this.item = RiceList.find((v) => v.name === name);
     }
 
     /**
      * 名前を取得
      */
     getName() {
-        return this.rice.name;
+        return this.item.name;
     }
 
     /**
      * おにぎりの強さ取得
      */
     getStrength() {
-        return this.rice.strength;
+        return this.item.strength;
     }
 
     /**
      * おにぎりの最大出現本数を取得する
      */
     getMaxCount() {
-        return this.rice.max_count;
+        return this.item.max_count;
     }
 
     /**
      * おにぎりの最小出現本数を取得する
      */
     getMinCount() {
-        return this.rice.min_count;
+        return this.item.min_count;
     }
 
     /**
      * 購入時の最高額を取得
      */
     getBidPrice() {
-        return this.rice.bid_price;
+        return this.item.bid_price;
     }
 
     /**
      * 購入時の最高額を取得
      */
     getSellingPrice() {
-        return this.rice.selling_price;
+        return this.item.selling_price;
     }
 }
 

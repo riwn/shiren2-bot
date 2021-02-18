@@ -76,49 +76,49 @@ class Arrows extends Items {
      */
     constructor(name) {
         super(ArrowList);
-        this.arrow = ArrowList.find((v) => v.name === name);
+        this.item = ArrowList.find((v) => v.name === name);
     }
 
     /**
      * 名前を取得
      */
     getName() {
-        return this.arrow.name;
+        return this.item.name;
     }
 
     /**
      * 矢の強さ取得
      */
     getStrength() {
-        return this.arrow.strength;
+        return this.item.strength;
     }
 
     /**
      * 矢の最大出現本数を取得する
      */
     getMaxCount() {
-        return this.arrow.max_count;
+        return this.item.max_count;
     }
 
     /**
      * 矢の最小出現本数を取得する
      */
     getMinCount() {
-        return this.arrow.min_count;
+        return this.item.min_count;
     }
 
     /**
      * 購入時の最高額を取得
      */
     getBidPrice() {
-        return this.arrow.bid_price;
+        return this.item.bid_price;
     }
 
     /**
      * 購入時の最高額を取得
      */
     getSellingPrice() {
-        return this.arrow.selling_price;
+        return this.item.selling_price;
     }
 }
 

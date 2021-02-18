@@ -115,7 +115,7 @@ const GrassList = [{
 /**
  * 草のクラス
  */
-class Grasss extends Items {
+class Grasses extends Items {
     /**
      * Grasss constructor
      * @param string name アイテム名
@@ -147,4 +147,4 @@ class Grasss extends Items {
     }
 }
 
-module.exports = Grasss
+module.exports = Grasses

@@ -142,28 +142,28 @@ class Pots extends Items {
      */
     constructor(name) {
         super(PotList);
-        this.pot = PotList.find((v) => v.name === name);
+        this.item = PotList.find((v) => v.name === name);
     }
 
     /**
      * 名前を取得
      */
     getName() {
-        return this.pot.name;
+        return this.item.name;
     }
 
     /**
      * 壺の最大容量を取得する
      */
     getMaxCount() {
-        return this.pot.max_count;
+        return this.item.max_count;
     }
 
     /**
      * 壺の最小容量を取得する
      */
     getMinCount() {
-        return this.pot.min_count;
+        return this.item.min_count;
     }
 
     /**
@@ -171,7 +171,7 @@ class Pots extends Items {
      * @param integer corValue
      */
     calcBidPrice(corValue) {
-        return this.pot.bid_price + (corValue * this.pot.bid_increase);
+        return this.item.bid_price + (corValue * this.item.bid_increase);
     }
 
     /**
@@ -179,7 +179,7 @@ class Pots extends Items {
      * @param integer corValue
      */
     calcSellingPrice(corValue) {
-        return this.pot.selling_price + (corValue * this.pot.selling_increase);
+        return this.item.selling_price + (corValue * this.item.selling_increase);
     }
 }
 
