@@ -49,14 +49,14 @@ class CaneCommand extends commando.Command {
             if (minCount == maxCount) {
                 // 買値情報取得
                 var minSellingPrice = cane.calcSellingPrice(maxCount);
-                var minBidPrice = cane.getMinBidPrice(minCount);
+                var minBidPrice = cane.calcBidPrice(minCount);
                 count = `${minCount}`
                 bidPrice = `${minBidPrice}`
                 sellingPrice = `${minSellingPrice}`
             } else {
                 // 買値情報取得
                 var maxBidPrice = cane.calcBidPrice(maxCount);
-                var minBidPrice = cane.getMinBidPrice(minCount);
+                var minBidPrice = cane.calcBidPrice(minCount);
                 // 売値情報取得
                 var maxSellingPrice = cane.calcSellingPrice(maxCount);
                 var minSellingPrice = cane.calcSellingPrice(minCount);
