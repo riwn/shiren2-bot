@@ -13,7 +13,7 @@ class ScrollCommand extends commando.Command {
     constructor(client) {
         super(client, {
             name: 'scroll',
-            description: '盾の値段がわかるよ！',
+            description: '巻物の値段がわかるよ！',
             memberName: 'scroll',
             group: 'item',
             examples: ['!scroll 聖域の巻物'],
