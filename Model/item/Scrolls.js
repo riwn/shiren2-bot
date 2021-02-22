@@ -164,10 +164,37 @@ class Scrolls extends Items {
     }
 
     /**
-     * 購入時の最高額を取得
+     * 売却時の最高額を取得
      */
     getSellingPrice() {
         return this.item.selling_price;
+    }
+
+    /**
+     * 引数の購入金額の巻物一覧取得
+     */
+    getBidScrolls(bid_price) {
+        return this.list.filter((v) => v.bid_price === bid_price);
+    }
+
+    /**
+     * 引数の売却金額の巻物一覧取得
+     */
+    getSellingScrolls(selling_price) {
+        return this.list.filter((v) => v.selling_price === selling_price);
+    }
+
+    /**
+     * 引数の購入金額の巻物整形して表示
+     */
+    printSameBidScrolls(bid_price) {
+        const scrolls = this.getBidScrolls(bid_price)
+        let print_string = "購入金額" + bid_price + "の巻物は\n"
+        const bid_price_scrolls = scrolls.map((scroll) => scroll.name)
+        if (bid_price_scrolls) {
+            return print_string + bid_price_scrolls.join('\n') + "\nです。"
+        }
+        return print_string + "存在しません。"
     }
 }
 
