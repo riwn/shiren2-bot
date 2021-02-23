@@ -38,10 +38,11 @@ class SearchBidCommand extends commando.Command {
         bidValue
     }) {
         var embed;
+        var item;
         // typeのクラスのインスタンス化
         switch (type){
             case 'scroll':
-                const item = new Scroll(name);
+                item = new Scroll("");
                 break
             default:
                 embed = new MessageEmbed()
