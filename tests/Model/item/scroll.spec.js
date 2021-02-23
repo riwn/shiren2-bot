@@ -14,6 +14,12 @@ describe('Scrolls test', () => {
     it('getSellingPrice', () => {
         expect(scroll.getSellingPrice()).toBe(100);
     });
+    it('getBidScrolls by none', () => {
+        expect(scroll.getBidScrolls(800)).toEqual([]);
+    });
+    it('getSellingScrollsetName by none', () => {
+        expect(scroll.getSellingScrolls(10)).toEqual([]);
+    });
     it('getBidScrolls by one', () => {
         expect(scroll.getBidScrolls(200)).toEqual([{"bid_price": 200, "id": 1, "name": "ワナ作動の巻物", "selling_price": 100}]);
     });
@@ -51,7 +57,10 @@ describe('Scrolls test', () => {
             selling_price: 1000,
         }]);
     });
-    it('printSameBidScrolls', () => {
+    it('printSameBidScrollsIfExsist', () => {
         expect(scroll.printSameBidScrolls(200)).toEqual("購入金額200の巻物は\nワナ作動の巻物\nです。");
+    });
+    it('printSameBidScrollsIfNotExsist', () => {
+        expect(scroll.printSameBidScrolls(800)).toEqual("購入金額800の巻物は\n存在しません。");
     });
 });

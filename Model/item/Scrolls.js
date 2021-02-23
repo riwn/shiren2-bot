@@ -191,7 +191,7 @@ class Scrolls extends Items {
         const scrolls = this.getBidScrolls(bid_price)
         let print_string = "購入金額" + bid_price + "の巻物は\n"
         const bid_price_scrolls = scrolls.map((scroll) => scroll.name)
-        if (bid_price_scrolls) {
+        if (bid_price_scrolls.length) {
             return print_string + bid_price_scrolls.join('\n') + "\nです。"
         }
         return print_string + "存在しません。"
