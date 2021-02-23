@@ -68,4 +68,4 @@ class SearchBidCommand extends commando.Command {
     }
 }
 
-module.exports = ScrollCommand
+module.exports = SearchBidCommand
