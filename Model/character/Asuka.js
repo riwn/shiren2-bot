@@ -1,5 +1,4 @@
 const Characters = require('./Characters');
-const Players = require('./Characters');
 const AsukaStatusList = [{
     lv: 1,
     attack: 7,
@@ -413,13 +412,6 @@ defence:	20
     constructor(lv) {
         super(AsukaStatusList);
         this.character = AsukaStatusList.find((v) => v.lv === lv);
-    }
-
-    /**
-     * 名前を取得
-     */
-    getName() {
-        return this.character.name;
     }
 
     /**
