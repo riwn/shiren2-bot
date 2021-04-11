@@ -13,25 +13,25 @@ const Scroll = require('../../Model/item/Scrolls');
 const Shield = require('../../Model/item/Shields');
 const Weapon = require('../../Model/item/Weapons');
 
-class SearchBidCommand extends commando.Command {
+class SearchSellCommand extends commando.Command {
     /**
-     * SearchBidCommand constructor
+     * SearchSellCommand constructor
      * @param {commando.CommandoClient} client
      */
     constructor(client) {
         super(client, {
-            name: 'searchbid',
-            description: '買値からアイテムがわかるよ！',
-            memberName: 'searchbid',
+            name: 'searchsell',
+            description: '売値からアイテムがわかるよ！',
+            memberName: 'searchsell',
             group: 'item',
-            examples: ['!searchbid scroll 200'],
+            examples: ['!searchsell scroll 250'],
             args: [{
                 key: 'type',
-                prompt: 'アイテムの種類',
+                prompt: 'アイテムの種類\nbracelet\ngrass\nrice\nscroll\n',
                 type: 'string',
             }, {
-                key: 'bidValue',
-                prompt: '買値は?',
+                key: 'sellValue',
+                prompt: '売値は?',
                 type: 'integer',
             }]
         })
@@ -43,7 +43,7 @@ class SearchBidCommand extends commando.Command {
      */
     async run(message, {
         type,
-        bidValue
+        sellValue
     }) {
         var embed;
         var item;
@@ -51,46 +51,42 @@ class SearchBidCommand extends commando.Command {
         var description;
         // typeのクラスのインスタンス化
         switch (type) {
-            case 'arrow':
-                item = new Arrow("");
-                title = "投擲買値検索";
-                break;
             case 'bracelet':
                 item = new Bracelet("");
-                title = "腕輪買値検索";
-                description = item.printSameBidBracelets(bidValue);
+                title = "腕輪売値検索";
+                description = item.printSameSellingBracelets(bidValue);
                 break;
             case 'cane':
                 item = new Cane("");
-                title = "杖買値検索";
+                title = "杖売値検索";
                 break;
             case 'grass':
                 item = new Grass("");
-                title = "草買値検索";
-                description = item.printSameBidGrasses(bidValue);
+                title = "草売値検索";
+                description = item.printSameSellGrasses(bidValue);
                 break;
-            case 'pot':
-                item = new Pot("");
-                title = "壺買値検索";
-                break;
+                // case 'pot':
+                //     item = new Pot("");
+                //     title = "壺売値検索";
+                //     break;
             case 'rice':
                 item = new Rice("");
-                title = "飯買値検索";
-                description = item.printSameBidRices(bidValue);
+                title = "飯売値検索";
+                description = item.printSameSellRices(sellValue);
                 break;
             case 'scroll':
                 item = new Scroll("");
-                title = "巻物買値検索";
-                description = item.printSameBidScrolls(bidValue);
+                title = "巻物売値検索";
+                description = item.printSameSellScrolls(sellValue);
                 break;
-            case 'shield':
-                item = new Shield("");
-                title = "盾買値検索";
-                break
-            case 'weapon':
-                item = new Weapon("");
-                title = "武器買値検索";
-                break
+                // case 'shield':
+                //     item = new Shield("");
+                //     title = "盾売値検索";
+                //     break
+                // case 'weapon':
+                //     item = new Weapon("");
+                //     title = "武器売値検索";
+                //     break
             default:
                 title = "未実装";
                 description = 'まだ実装されていないよ。ごめんね。';
@@ -110,4 +106,4 @@ class SearchBidCommand extends commando.Command {
     }
 }
 
-module.exports = SearchBidCommand
+module.exports = SearchSellCommand

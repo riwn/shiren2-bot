@@ -196,6 +196,19 @@ class Scrolls extends Items {
         }
         return print_string + "存在しません。"
     }
+
+    /**
+     * 引数の売却金額の巻物整形して表示
+     */
+    printSameSellScrolls(sell_price) {
+        const scrolls = this.getSellingScrolls(sell_price)
+        let print_string = "売却金額" + sell_price + "の巻物は\n"
+        const sell_price_scrolls = scrolls.map((scroll) => scroll.name)
+        if (sell_price_scrolls.length) {
+            return print_string + sell_price_scrolls.join('\n') + "\nです。"
+        }
+        return print_string + "存在しません。"
+    }
 }
 
 module.exports = Scrolls

@@ -125,6 +125,46 @@ class Bracelets extends Items {
     getSellingPrice() {
         return this.item.selling_price;
     }
+
+    /**
+     * 引数の購入金額の腕輪一覧取得
+     */
+    getBidBracelets(bid_price) {
+        return this.list.filter((v) => v.bid_price === bid_price);
+    }
+
+    /**
+     * 引数の売却金額の腕輪一覧取得
+     */
+    getSellingBracelets(selling_price) {
+        return this.list.filter((v) => v.selling_price === selling_price);
+    }
+
+    /**
+     * 引数の購入金額の腕輪を整形して表示
+     */
+    printSameBidBracelets(bid_price) {
+        const bracelets = this.getBidBracelets(bid_price)
+        let print_string = "購入金額" + bid_price + "の腕輪は\n"
+        const bid_price_bracelets = bracelets.map((bracelet) => bracelet.name)
+        if (bid_price_bracelets.length) {
+            return print_string + bid_price_bracelets.join('\n') + "\nです。"
+        }
+        return print_string + "存在しません。"
+    }
+
+    /**
+     * 引数の売却金額の腕輪を整形して表示
+     */
+    printSameSellingBracelets(selling_price) {
+        const bracelets = this.getSellingBracelets(selling_price)
+        let print_string = "売却金額" + selling_price + "の腕輪は\n"
+        const selling_price_bracelets = bracelets.map((bracelet) => bracelet.name)
+        if (selling_price_bracelets.length) {
+            return print_string + selling_price_bracelets.join('\n') + "\nです。"
+        }
+        return print_string + "存在しません。"
+    }
 }
 
 module.exports = Bracelets

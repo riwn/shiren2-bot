@@ -82,28 +82,41 @@ class Rices extends Items {
     }
 
     /**
-     * 引数の購入金額の巻物一覧取得
+     * 引数の購入金額の飯一覧取得
      */
     getBidRices(bid_price) {
         return this.list.filter((v) => v.bid_price === bid_price);
     }
 
     /**
-     * 引数の売却金額の巻物一覧取得
+     * 引数の売却金額の飯一覧取得
      */
     getSellingRices(selling_price) {
         return this.list.filter((v) => v.selling_price === selling_price);
     }
 
     /**
-     * 引数の購入金額の巻物整形して表示
+     * 引数の購入金額の飯を整形して表示
      */
     printSameBidRices(bid_price) {
-        const scrolls = this.getBidRices(bid_price)
+        const rices = this.getBidRices(bid_price)
         let print_string = "購入金額" + bid_price + "の飯は\n"
-        const bid_price_scrolls = scrolls.map((scroll) => scroll.name)
-        if (bid_price_scrolls.length) {
-            return print_string + bid_price_scrolls.join('\n') + "\nです。"
+        const bid_price_rices = rices.map((rice) => rice.name)
+        if (bid_price_rices.length) {
+            return print_string + bid_price_rices.join('\n') + "\nです。"
+        }
+        return print_string + "存在しません。"
+    }
+
+    /**
+     * 引数の売却金額の飯を整形して表示
+     */
+    printSameSellingRices(selling_price) {
+        const rices = this.getSellingRices(selling_price)
+        let print_string = "売却金額" + selling_price + "の飯は\n"
+        const selling_price_rices = rices.map((rice) => rice.name)
+        if (selling_price_rices.length) {
+            return print_string + selling_price_rices.join('\n') + "\nです。"
         }
         return print_string + "存在しません。"
     }
