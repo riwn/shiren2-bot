@@ -145,6 +145,46 @@ class Grasses extends Items {
     getSellingPrice() {
         return this.item.selling_price;
     }
+
+    /**
+     * 引数の購入金額の草一覧取得
+     */
+    getBidGrasses(bid_price) {
+        return this.list.filter((v) => v.bid_price === bid_price);
+    }
+
+    /**
+     * 引数の売却金額の草一覧取得
+     */
+    getSellingGrasses(selling_price) {
+        return this.list.filter((v) => v.selling_price === selling_price);
+    }
+
+    /**
+     * 引数の購入金額の草を整形して表示
+     */
+    printSameBidGrassed(bid_price) {
+        const grasses = this.getBidGrasses(bid_price)
+        let print_string = "購入金額" + bid_price + "の草は\n"
+        const bid_price_grasses = grasses.map((grass) => grass.name)
+        if (bid_price_grasses.length) {
+            return print_string + bid_price_grasses.join('\n') + "\nです。"
+        }
+        return print_string + "存在しません。"
+    }
+
+    /**
+     * 引数の売却金額の草を整形して表示
+     */
+    printSameSellingGrassed(selling_price) {
+        const grasses = this.getSellingGrasses(selling_price)
+        let print_string = "売却金額" + selling_price + "の草は\n"
+        const selling_price_grasses = grasses.map((grass) => grass.name)
+        if (selling_price_grasses.length) {
+            return print_string + selling_price_grasses.join('\n') + "\nです。"
+        }
+        return print_string + "存在しません。"
+    }
 }
 
 module.exports = Grasses

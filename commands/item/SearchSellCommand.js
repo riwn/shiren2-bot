@@ -27,7 +27,7 @@ class SearchSellCommand extends commando.Command {
             examples: ['!searchsell scroll 250'],
             args: [{
                 key: 'type',
-                prompt: 'アイテムの種類',
+                prompt: 'アイテムの種類\nbracelet\ngrass\nrice\nscroll\n',
                 type: 'string',
             }, {
                 key: 'sellValue',
@@ -51,13 +51,10 @@ class SearchSellCommand extends commando.Command {
         var description;
         // typeのクラスのインスタンス化
         switch (type) {
-            case 'arrow':
-                item = new Arrow("");
-                title = "投擲売値検索";
-                break;
             case 'bracelet':
                 item = new Bracelet("");
                 title = "腕輪売値検索";
+                description = item.printSameSellingBracelets(bidValue);
                 break;
             case 'cane':
                 item = new Cane("");
@@ -66,11 +63,12 @@ class SearchSellCommand extends commando.Command {
             case 'grass':
                 item = new Grass("");
                 title = "草売値検索";
+                description = item.printSameSellGrasses(bidValue);
                 break;
-            case 'pot':
-                item = new Pot("");
-                title = "壺売値検索";
-                break;
+                // case 'pot':
+                //     item = new Pot("");
+                //     title = "壺売値検索";
+                //     break;
             case 'rice':
                 item = new Rice("");
                 title = "飯売値検索";
@@ -81,14 +79,14 @@ class SearchSellCommand extends commando.Command {
                 title = "巻物売値検索";
                 description = item.printSameSellScrolls(sellValue);
                 break;
-            case 'shield':
-                item = new Shield("");
-                title = "盾売値検索";
-                break
-            case 'weapon':
-                item = new Weapon("");
-                title = "武器売値検索";
-                break
+                // case 'shield':
+                //     item = new Shield("");
+                //     title = "盾売値検索";
+                //     break
+                // case 'weapon':
+                //     item = new Weapon("");
+                //     title = "武器売値検索";
+                //     break
             default:
                 title = "未実装";
                 description = 'まだ実装されていないよ。ごめんね。';

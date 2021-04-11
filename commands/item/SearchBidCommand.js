@@ -58,6 +58,7 @@ class SearchBidCommand extends commando.Command {
             case 'bracelet':
                 item = new Bracelet("");
                 title = "腕輪買値検索";
+                description = item.printSameBidBracelets(bidValue);
                 break;
             case 'cane':
                 item = new Cane("");
@@ -66,6 +67,7 @@ class SearchBidCommand extends commando.Command {
             case 'grass':
                 item = new Grass("");
                 title = "草買値検索";
+                description = item.printSameBidGrasses(bidValue);
                 break;
             case 'pot':
                 item = new Pot("");
