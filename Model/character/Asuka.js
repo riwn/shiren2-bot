@@ -1,402 +1,403 @@
-const Players = require('./Players');
+const Characters = require('./Characters');
+const Players = require('./Characters');
 const AsukaStatusList = [{
-    id: 1,
+    lv: 1,
     attack: 7,
     defence: 4
 },{
-    id: 2,
+    lv: 2,
     attack: 8,
     defence: 4
 },{
-    id: 3,
+    lv: 3,
     attack: 10,
     defence: 4
 },{
-    id: 4,
+    lv: 4,
     attack: 12,
     defence: 4
 },{
-    id: 5,
+    lv: 5,
     attack: 15,
     defence: 4
 },{
-    id: 6,
+    lv: 6,
     attack: 17,
     defence: 4
 },{
-    id: 7,
+    lv: 7,
     attack: 18,
     defence: 4
 },{
-    id: 8,
+    lv: 8,
     attack: 20,
     defence: 4
 },{
-    id: 9,
+    lv: 9,
     attack: 22,
     defence: 4
 },{
-    id: 10,
+    lv: 10,
     attack: 24,
     defence: 5
 },{
-    id: 11,
+    lv: 11,
     attack: 26,
     defence: 5
 },{
-    id: 12,
+    lv: 12,
     attack: 28,
     defence: 5
 },{
-    id: 13,
+    lv: 13,
     attack: 31,
     defence: 5
 },{
-    id: 14,
+    lv: 14,
     attack: 34,
     defence: 5
 },{
-    id: 15,
+    lv: 15,
     attack: 37,
     defence: 5
 },{
-    id: 16,
+    lv: 16,
     attack: 41,
     defence: 5
 },{
-    id: 17,
+    lv: 17,
     attack: 44,
     defence: 5
 },{
-    id: 18,
+    lv: 18,
     attack: 47,
     defence: 5
 },{
-    id: 19,
+    lv: 19,
     attack: 50,
     defence: 5
 },{
-    id: 20,
+    lv: 20,
     attack: 53,
     defence: 5
 },{
-    id: 21,
+    lv: 21,
     attack: 56,
     defence: 5
 },{
-    id: 22,
+    lv: 22,
     attack: 58,
     defence: 5
 },{
-    id: 23,
+    lv: 23,
     attack: 60,
     defence: 5
 },{
-    id: 24,
+    lv: 24,
     attack: 63,
     defence: 5
 },{
-    id: 25,
+    lv: 25,
     attack: 66,
     defence: 5
 },{
-    id: 26,
+    lv: 26,
     attack: 68,
     defence: 5
 },{
-    id: 27,
+    lv: 27,
     attack: 70,
     defence: 5
 },{
-    id: 28,
+    lv: 28,
     attack: 72,
     defence: 5
 },{
-    id: 29,
+    lv: 29,
     attack: 75,
     defence: 5
 },{
-    id: 30,
+    lv: 30,
     attack: 78,
     defence: 5
 },{
-    id: 31,
+    lv: 31,
     attack: 80,
     defence: 5
 },{
-    id: 32,
+    lv: 32,
     attack: 82,
     defence: 5
 },{
-    id: 33,
+    lv: 33,
     attack: 84,
     defence: 5
 },{
-    id: 34,
+    lv: 34,
     attack: 86,
     defence: 6
 },{
-    id:	35,
+    lv:	35,
     attack:	88,
     defence: 6
 },{
-    id:	36,
+    lv:	36,
     attack:	90,
     defence:	6
 },{
-    id:	37,
+    lv:	37,
     attack:	92,
     defence:	6
 },{
-    id:	37,
+    lv:	37,
 attack:	92,
 defence:	6
 },{
-    id:	38,
+    lv:	38,
 attack:	94,
 defence:	6
 },{
-    id:	39,
+    lv:	39,
 attack:	96,
 defence:	6
 },{
-    id:	40,
+    lv:	40,
 attack:	98,
 defence:	6
 },{
-    id:	41,
+    lv:	41,
 attack:	100,
 defence:	6
 },{
-    id:	42,
+    lv:	42,
 attack:	102,
 defence:	6
 },{
-    id:	43,
+    lv:	43,
 attack:	104,
 defence:	6
 },{
-    id:	44,
+    lv:	44,
 attack:	106,
 defence:	6
 },{
-    id:	45,
+    lv:	45,
 attack:	108,
 defence:	6
 },{
-    id:	46,
+    lv:	46,
 attack:	110,
 defence:	6
 },{
-    id:	47,
+    lv:	47,
 attack:	112,
 defence:	6
 },{
-    id:	48,
+    lv:	48,
 attack:	114,
 defence:	6
 },{
-    id:	49,
+    lv:	49,
 attack:	116,
 defence:	6
 },{
-    id:	50,
+    lv:	50,
 attack:	118,
 defence:	6
 },{
-    id:	51,
+    lv:	51,
 attack:	120,
 defence:	6
 },{
-    id:	52,
+    lv:	52,
 attack:	122,
 defence:	6
 },{
-    id:	53,
+    lv:	53,
 attack:	124,
 defence:	6
 },{
-    id:	54,
+    lv:	54,
 attack:	126,
 defence:	6
 },{
-    id:	55,
+    lv:	55,
 attack:	127,
 defence:	6
 },{
-    id:	56,
+    lv:	56,
 attack:	128,
 defence:	6
 },{
-    id:	57,
+    lv:	57,
 attack:	129,
 defence:	6
 },{
-    id:	58,
+    lv:	58,
 attack:	130,
 defence:	6
 },{
-    id:	59,
+    lv:	59,
 attack:	131,
 defence:	7
 },{
-    id:	60,
+    lv:	60,
 attack:	132,
 defence:	7
 },{
-    id:	61,
+    lv:	61,
 attack:	133,
 defence:	7
 },{
-    id:	62,
+    lv:	62,
 attack:	134,
 defence:	8
 },{
-    id:	63,
+    lv:	63,
 attack:	135,
 defence:	8
 },{
-    id:	64,
+    lv:	64,
 attack:	136,
 defence:	8
 },{
-    id:	65,
+    lv:	65,
 attack:	137,
 defence:	9
 },{
-    id:	66,
+    lv:	66,
 attack:	138,
 defence:	9
 },{
-    id:	67,
+    lv:	67,
 attack:	139,
 defence:	9
 },{
-    id:	68,
+    lv:	68,
 attack:	140,
 defence:	9
 },{
-    id:	69,
+    lv:	69,
 attack:	141,
 defence:	10
 },{
-    id:	70,
+    lv:	70,
 attack:	142,
 defence:	10
 },{
-    id:	71,
+    lv:	71,
 attack:	143,
 defence:	10
 },{
-    id:	72,
+    lv:	72,
 attack:	144,
 defence:	11
 },{
-    id:	73,
+    lv:	73,
 attack:	145,
 defence:	11
 },{
-    id:	74,
+    lv:	74,
 attack:	146,
 defence:	11
 },{
-    id:	75,
+    lv:	75,
 attack:	147,
 defence:	12
 },{
-    id:	76,
+    lv:	76,
 attack:	148,
 defence:	12
 },{
-    id:	77,
+    lv:	77,
 attack:	150,
 defence:	12
 },{
-    id:	78,
+    lv:	78,
 attack:	152,
 defence:	13
 },{
-    id:	79,
+    lv:	79,
 attack:	154,
 defence:	13
 },{
-    id:	80,
+    lv:	80,
 attack:	156,
 defence:	13
 },{
-    id:	81,
+    lv:	81,
 attack:	158,
 defence:	14
 },{
-    id:	82,
+    lv:	82,
 attack:	160,
 defence:	14
 },{
-    id:	83,
+    lv:	83,
 attack:	162,
 defence:	14
 },{
-    id:	84,
+    lv:	84,
 attack:	164,
 defence:	15
 },{
-    id:	85,
+    lv:	85,
 attack:	166,
 defence:	15
 },{
-    id:	86,
+    lv:	86,
 attack:	168,
 defence:	15
 },{
-    id:	87,
+    lv:	87,
 attack:	170,
 defence:	16
 },{
-    id:	88,
+    lv:	88,
 attack:	172,
 defence:	16
 },{
-    id:	89,
+    lv:	89,
 attack:	174,
 defence:	16
 },{
-    id:	90,
+    lv:	90,
 attack:	176,
 defence:	17
 },{
-    id:	91,
+    lv:	91,
 attack:	180,
 defence:	17
 },{
-    id:	92,
+    lv:	92,
 attack:	183,
 defence:	17
 },{
-    id:	93,
+    lv:	93,
 attack:	186,
 defence:	18
 },{
-    id:	94,
+    lv:	94,
 attack:	189,
 defence:	18
 },{
-    id:	95,
+    lv:	95,
 attack:	193,
 defence:	18
 },{
-    id:	96,
+    lv:	96,
 attack:	195,
 defence:	19
 },{
-    id:	97,
+    lv:	97,
 attack:	197,
 defence:	19
 },{
-    id:	98,
+    lv:	98,
 attack:	200,
 defence:	20
 },{
-    id:	99,
+    lv:	99,
 attack:	255,
 defence:	20
 }];
@@ -404,63 +405,36 @@ defence:	20
 /**
  * プレイヤーのクラス
  */
- class Asuka extends Players {
+ class Asuka extends Characters {
     /**
      * Scrolls constructor
      * @param string name アイテム名
      */
     constructor(lv) {
         super(AsukaStatusList);
-        this.item = AsukaStatusList.find((v) => v.id === lv);
+        this.character = AsukaStatusList.find((v) => v.lv === lv);
     }
 
     /**
      * 名前を取得
      */
     getName() {
-        return this.item.name;
+        return this.character.name;
     }
 
     /**
      * 基礎攻撃力を取得
      */
     getAttack() {
-        return this.item.attack;
+        return this.character.attack;
     }
 
     /**
      * 防御力を取得
      */
     getDefence() {
-        return this.item.defence;
+        return this.character.defence;
     }
-
-    // /**
-    //  * 引数の購入金額の巻物一覧取得
-    //  */
-    // getBidScrolls(bid_price) {
-    //     return this.list.filter((v) => v.bid_price === bid_price);
-    // }
-
-    // /**
-    //  * 引数の売却金額の巻物一覧取得
-    //  */
-    // getSellingScrolls(selling_price) {
-    //     return this.list.filter((v) => v.selling_price === selling_price);
-    // }
-
-    // /**
-    //  * 引数の購入金額の巻物整形して表示
-    //  */
-    // printSameBidScrolls(bid_price) {
-    //     const scrolls = this.getBidScrolls(bid_price)
-    //     let print_string = "購入金額" + bid_price + "の巻物は\n"
-    //     const bid_price_scrolls = scrolls.map((scroll) => scroll.name)
-    //     if (bid_price_scrolls.length) {
-    //         return print_string + bid_price_scrolls.join('\n') + "\nです。"
-    //     }
-    //     return print_string + "存在しません。"
-    // }
 }
 
 module.exports = Asuka
