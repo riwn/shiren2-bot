@@ -62,7 +62,8 @@ client.registry
         commandState: false,
     })
     .registerGroups([
-        ['item', 'アイテム']
+        ['item', 'アイテム'],
+        ['character', 'キャラクター']
     ])
     .registerCommandsIn(path.join(__dirname, 'commands'))
 
