@@ -80,6 +80,33 @@ class Rices extends Items {
     getSellingPrice() {
         return this.item.selling_price;
     }
+
+    /**
+     * 引数の購入金額の巻物一覧取得
+     */
+    getBidRices(bid_price) {
+        return this.list.filter((v) => v.bid_price === bid_price);
+    }
+
+    /**
+     * 引数の売却金額の巻物一覧取得
+     */
+    getSellingRices(selling_price) {
+        return this.list.filter((v) => v.selling_price === selling_price);
+    }
+
+    /**
+     * 引数の購入金額の巻物整形して表示
+     */
+    printSameBidRices(bid_price) {
+        const scrolls = this.getBidRices(bid_price)
+        let print_string = "購入金額" + bid_price + "の飯は\n"
+        const bid_price_scrolls = scrolls.map((scroll) => scroll.name)
+        if (bid_price_scrolls.length) {
+            return print_string + bid_price_scrolls.join('\n') + "\nです。"
+        }
+        return print_string + "存在しません。"
+    }
 }
 
 module.exports = Rices

@@ -3,7 +3,15 @@ require('dotenv').config();
 const {
     MessageEmbed
 } = require('discord.js');
+const Arrow = require('../../Model/item/Arrows');
+const Bracelet = require('../../Model/item/Bracelets');
+const Cane = require('../../Model/item/Canes');
+const Grass = require('../../Model/item//Grasses');
+const Pot = require('../../Model/item/Pots');
+const Rice = require('../../Model/item/Rices');
 const Scroll = require('../../Model/item/Scrolls');
+const Shield = require('../../Model/item/Shields');
+const Weapon = require('../../Model/item/Weapons');
 
 class SearchBidCommand extends commando.Command {
     /**
@@ -39,26 +47,58 @@ class SearchBidCommand extends commando.Command {
     }) {
         var embed;
         var item;
+        var title;
+        var description;
         // typeのクラスのインスタンス化
-        switch (type){
+        switch (type) {
+            case 'arrow':
+                item = new Arrow("");
+                title = "投擲買値検索";
+                break;
+            case 'bracelet':
+                item = new Bracelet("");
+                title = "腕輪買値検索";
+                break;
+            case 'cane':
+                item = new Cane("");
+                title = "杖買値検索";
+                break;
+            case 'grass':
+                item = new Grass("");
+                title = "草買値検索";
+                break;
+            case 'pot':
+                item = new Pot("");
+                title = "壺買値検索";
+                break;
+            case 'rice':
+                item = new Rice("");
+                title = "飯買値検索";
+                description = item.printSameBidRices(bidValue);
+                break;
             case 'scroll':
                 item = new Scroll("");
+                title = "巻物買値検索";
+                description = item.printSameBidScrolls(bidValue);
+                break;
+            case 'shield':
+                item = new Shield("");
+                title = "盾買値検索";
+                break
+            case 'weapon':
+                item = new Weapon("");
+                title = "武器買値検索";
                 break
             default:
-                embed = new MessageEmbed()
-                .setTitle('未実装')
-                .setColor("#5d62ff")
-                .setDescription('まだ実装されていないよ。ごめんね。');
+                title = "未実装";
+                description = 'まだ実装されていないよ。ごめんね。';
                 break
+        }
 
-        }
-        if (item) {
-            var description =item.printSameBidScrolls(bidValue);
-            embed = new MessageEmbed()
-                .setTitle("買値検索")
-                .setColor("#5d62ff")
-                .setDescription(description);
-        }
+        embed = new MessageEmbed()
+            .setTitle(title)
+            .setColor("#5d62ff")
+            .setDescription(description);
         return message.channel.send(embed).then(async function (msg) {
             let reactList = ['👍', '👎'];
             reactList.forEach(react => {
